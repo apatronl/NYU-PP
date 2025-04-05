@@ -1,8 +1,8 @@
 //
 //  WeatherViewModel.swift
-//  Weather
+//  WeatherStarter
 //
-//  Created by Alejandrina Patron on 2/17/25.
+//  Created by Alejandrina Patron on 4/4/25.
 //
 
 import SwiftUI
@@ -23,20 +23,23 @@ class WeatherViewModel {
     self.dateFormatter.dateFormat = "yyyy-MM-dd"
   }
 
+  // TASK: Get city name and current temperature from `currentForecast`
   func fetchWeather() async {
     let currWeatherResult = await weatherService.getCurrentWeather()
     switch currWeatherResult {
     case .success(let currentForecast):
-      self.city = currentForecast.data.first!.city_name
-      self.currentTemperature = "\(Int(currentForecast.data.first!.temp))º"
+      // TODO: Populate `city` and `currentTemperature`
+      print("Add your code here")
     case .failure(let error):
       print(error)
     }
 
+    // TASK: Get each day's forecast from `dailyForecastData`
     let dailyWeatherResult = await weatherService.getDailyForecast()
     switch dailyWeatherResult {
     case .success(let dailyForecastData):
-      self.dailyWeather = dailyForecastData.data.map { .init($0, dateFormatter) }
+      // TODO: Populate `dailyWeather` list with real data
+      print("Add your code here")
     case .failure(let error):
       print(error)
     }
@@ -53,7 +56,6 @@ struct DailyWeatherViewModel: Identifiable {
   init(_ data: DailyForecastData, _ dateFormatter: DateFormatter) {
     self.temp = "\(Int(data.temp))º"
 
-    // TODO: Move this parsing elsewhere
     if let date = dateFormatter.date(from: data.datetime) {
       self.day = date.formatted(Date.FormatStyle().weekday(.abbreviated))
     } else {
