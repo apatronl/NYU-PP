@@ -37,7 +37,7 @@ class WeatherViewModel {
     // TASK: Get each day's forecast from `dailyForecastData`
     let dailyWeatherResult = await weatherService.getDailyForecast()
     switch dailyWeatherResult {
-    case .success(let dailyForecastData):
+    case .success(let dailyForecast):
       // TODO: Populate `dailyWeather` list with real data
       print("Add your code here")
     case .failure(let error):

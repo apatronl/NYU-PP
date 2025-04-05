@@ -35,8 +35,8 @@ class WeatherViewModel {
 
     let dailyWeatherResult = await weatherService.getDailyForecast()
     switch dailyWeatherResult {
-    case .success(let dailyForecastData):
-      self.dailyWeather = dailyForecastData.data.map { .init($0, dateFormatter) }
+    case .success(let dailyForecast):
+      self.dailyWeather = dailyForecast.data.map { .init($0, dateFormatter) }
     case .failure(let error):
       print(error)
     }
